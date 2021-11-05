@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es6",
+    "sourceMap": true,
     "lib": [
       "dom",
       "dom.iterable",
@@ -17,6 +18,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "watch": true,
     "jsx": "react-jsx",
     "outDir": "./dist",
     "typeRoots": [
