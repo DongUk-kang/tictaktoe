@@ -12,6 +12,7 @@ export type SquareProp = {
  * arrow func 추가하여 에러 수정
  *
  * value 선언한 any타입 수정예정 11.5일 오전 11시15분 기준
+ *
  */
 
 function Square(props: SquareProp) {

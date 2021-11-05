@@ -19,6 +19,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "watch": true,
     "jsx": "react-jsx",
     "outDir": "./dist",
     "typeRoots": [
