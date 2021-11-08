@@ -5,13 +5,13 @@ module.exports = {
     node: true,
   },
   extends: [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
+    'eslint:recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
   ],
-  plugins: ["prettier", "@typescript-eslint"],
+  plugins: ['prettier', '@typescript-eslint'],
   rules: {
-    "prettier/prettier": [
-      "error",
+    'prettier/prettier': [
+      'error',
       {
         singleQuote: true,
         semi: true,
@@ -19,11 +19,10 @@ module.exports = {
         tabWidth: 2,
         printWidth: 80,
         bracketSpacing: true,
-        arrowParens: "avoid",
       },
     ],
   },
   parserOptions: {
-    parser: "@typescript-eslint/parser",
+    parser: '@typescript-eslint/parser',
   },
 };
