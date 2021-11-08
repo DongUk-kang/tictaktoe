@@ -11,11 +11,33 @@ type GlobalState = {
 }
 
 type GlobalAciton = 
-  | { type: 'CLICK_SQUARE'; onClick: () => void }
-  | { type: 'CLICK_X_TURN'; onClick: () => void}
-  | { type: 'CLICK_O_TURN'; onClick: () => void}
+  | { type: 'CLICK_SQUARE'; onClick: () => void; }
+  | { type: 'CLICK_X_TURN'; onClick: () => void; }
+  | { type: 'CLICK_O_TURN'; onClick: () => void; }
 
 export function reducer(state: GlobalState, action: GlobalAciton) {
-  switch(action.type)
-    type: 
+  switch(action.type) {
+    case 'CLICK_SQUARE':
+      return {
+        ...state,
+        action: action.onClick
+      }
+
+    case 'CLICK_X_TURN':
+      return {
+        ...state,
+        action: action.onClick
+      }
+
+    case "CLICK_O_TURN":
+      return {
+        ...state,
+        action: action.onClick
+      }
+    
+    default:
+      throw new Error('에러 수정 필요')
+  }
+    
+
 }

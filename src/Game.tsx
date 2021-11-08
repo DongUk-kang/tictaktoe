@@ -1,8 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import '../src/index.css';
-
 // Square components
-
 type Square = {
   value: string;
   onClick: () => void;
@@ -17,7 +15,6 @@ type Square = {
 //  * value 선언한 any타입 수정예정 11.5일 기준  * value는 any => string으로 수정
 //  *
 //  */
-
 // const SquareContext = React.createContext(defaultValue);
 
 function Squares({ value, onClick }: Square) {
