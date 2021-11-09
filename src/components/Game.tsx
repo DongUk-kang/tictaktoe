@@ -13,6 +13,11 @@ function calc(squares: string[]) {
     [2, 4, 6],
   ];
 
+  /**
+   * 게임에서 승리할 수 있는 조건 3칸 채우기
+   *
+   */
+
   for (let i = 0; i < line.length; i++) {
     const [a, b, c] = line[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
@@ -22,12 +27,23 @@ function calc(squares: string[]) {
   return null;
 }
 
+/**
+ * index를 0으로 지정 후 반복문 활용
+ * 라인의 들어갈 3개 숫자 상수화
+ *
+ */
+
 function Game() {
   const [state, setState] = useState({
     history: [{ squares: Array(9).fill(null) }],
     xIsNext: true,
     stepNumber: 0,
   });
+
+  /**
+   * 게임 펑션 컴포넌트
+   * 상태값을 상수화 하여 useState에 데이터를 저장
+   */
 
   const current = state.history[state.stepNumber];
   const winner = calc(current.squares);
@@ -65,6 +81,7 @@ function Game() {
       </li>
     );
   });
+
   let status;
   if (winner) {
     status = 'Winner: ' + winner;
@@ -74,6 +91,7 @@ function Game() {
   if (state.stepNumber !== current.squares.length) {
     status = `Next Play: ${state.xIsNext ? 'x' : 'o'}`;
   }
+
   return (
     <div className="game">
       <div className="game-board">

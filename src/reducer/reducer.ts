@@ -9,13 +9,17 @@ export interface GlobalState {
   xIsNext: boolean;
 }
 
+interface history {
+  
+}
+
 export const initGlobalState: GlobalState = {
   value: null,
   state: [],
   move: 0,
   winner: null,
   stepNumber: 0,
-  xIsNext: false,
+  xIsNext: true,
 };
 
 export type GlobalAction =
