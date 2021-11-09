@@ -1,66 +1,43 @@
-import React, { Dispatch } from 'react';
+import React, { Dispatch, MouseEvent } from 'react';
 
 export interface GlobalState {
-  value: string;
-  onClick: () => void;
+  value: string | null;
   state: string[];
   move: number;
-  step: object;
+  winner: null;
+  stepNumber: number;
+  xIsNext: boolean;
 }
 
 export const initGlobalState: GlobalState = {
-  onClick: function (): void {
-    throw new Error('Function not implemented.');
-  },
-  state: string[],
-  move: number,
+  value: null,
+  state: [],
+  move: 0,
+  winner: null,
+  stepNumber: 0,
+  xIsNext: false,
 };
 
 export type GlobalAction =
-  | { type: 'CLICK_GAME_START'; }
-  | { type: 'CLICK_SQUARE'; }
-  | { type: 'JUMP_TO_STEP'; }
-  | { type: 'CHANGE_TURN'; }
-  | { type: 'BACK_TO_MOVE'; }
-  | { type: 'FINISH_GAME'; }
-export type GlobalDIspatch = Dispatch<GlobalAction>
+  | { type: 'CLICK_BOADR'; onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void }
+  | { type: 'JUMP_TO_HISTORY'; onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void };
+// CLICK_BOADR 플레이어가 수를 둘때
+// JUMP_TO_HISTORY 버튼을 누르면 이전 히스토리로 돌아갈때 action
+export type GlobalDispatch = Dispatch<GlobalAction>;
 
 export function globalReducer(state: GlobalState, action: GlobalAction): GlobalState {
   switch (action.type) {
-    case 'CLICK_GAME_START':
+    case 'CLICK_BOADR':
       return {
         ...state,
-        onClick: () => void,
-      }
-    
-    case 'CLICK_SQUARE':
+      };
+
+    case 'JUMP_TO_HISTORY':
       return {
         ...state,
-        onClick: () => void,
-      }
-    
-    case 'JUMP_TO_STEP':
-      return {
-        ...state,
-        onClick: () => void,
-      }
-    
-    case 'CHANGE_TURN':
-      return {
-        ...state,
-        onClick: () => void,
-      }
-    
-    case 'BACK_TO_MOVE': 
-      return {
-        ...state,
-        onClick: () => void,
-      }
-    
-    case 'FINISH_GAME':
-      return {
-        ...state,
-        onClick: () => void,
-      }
+      };
+
+    default:
+      return state;
   }
 }
