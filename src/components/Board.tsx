@@ -1,5 +1,5 @@
 import React from 'react';
-import Square from '../components/Square';
+import Squares from '../components/Square';
 
 type Board = {
   state: string[];
@@ -10,9 +10,9 @@ type Board = {
 // state, onClick 타입 재지정 예정
 // index를 number 타입으로 지정함
 
-function Board({ state, onClick }: Board) {
+function Boards({ state, onClick }: Board) {
   const renderSquare = (i: number) => {
-    return <Square value={state[i]} onClick={() => onClick(i)} />;
+    return <Squares value={state[i]} onClick={() => onClick(i)} />;
   };
 
   return (
@@ -46,33 +46,4 @@ function Board({ state, onClick }: Board) {
  * renderSquare로 게임판? 게임보드?렌더링 후 생성
  */
 
-function calc(squares: string[]) {
-  const line = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-
-  for (let i = 0; i < line.length; i++) {
-    const [a, b, c] = line[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
-    }
-  }
-  return null;
-}
-
-/*
- * 계산 펑션 생성에 squeares는 string타입 지정
- * line 상수로 승리 조건 (3칸이 모두 같은모양일때 승리)
- * 반복문 활용 index 변수를 0으로 지정 line의length가 index보다 크면 i는 하나씩 커짐
- *  line[i]를 [a,b,c]로 상수화 진행
- *  if문을 활용 squares[a] && squares[a] 과 squares[b] && squares[a] 과 squares[c] 같으면 squares[a]리턴
- */
-
-export default Board;
+export default Boards;

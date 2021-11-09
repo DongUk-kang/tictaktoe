@@ -17,7 +17,7 @@ type Square = {
 //  */
 // const SquareContext = React.createContext(defaultValue);
 
-function Square({ value, onClick }: Square) {
+function Squares({ value, onClick }: Square) {
   return (
     <button className="square" onClick={onClick}>
       {value}
@@ -30,4 +30,4 @@ function Square({ value, onClick }: Square) {
  * 내용 추가 예정 -> value와 onclick에 앞에 선언한 props. 삭제
  */
 
-export default Square;
+export default Squares;

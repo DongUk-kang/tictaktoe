@@ -31,7 +31,6 @@ export function globalReducer(state: GlobalState, action: GlobalAction): GlobalS
       return {
         ...state,
       };
-
     case 'JUMP_TO_HISTORY':
       return {
         ...state,

@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import Board from './Board';
+import Boards from './Board';
 
 function calc(squares: string[]) {
   const line = [
@@ -73,13 +73,11 @@ function Game() {
   }
   if (state.stepNumber !== current.squares.length) {
     status = `Next Play: ${state.xIsNext ? 'x' : 'o'}`;
-  } else {
-    status = ' 무승부 ';
   }
   return (
     <div className="game">
       <div className="game-board">
-        <Board state={current.squares} onClick={(i) => onClick(i)} />
+        <Boards state={current.squares} onClick={(i) => onClick(i)} />
       </div>
       <div className="game-info">
         <div>{status}</div>
