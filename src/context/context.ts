@@ -1,18 +1,15 @@
-import React, { createContext, useContext } from 'react';
-// import { GlobalState } '../reducer'
+import { createContext, useContext } from 'react';
+import { GlobalDIspatch, GlobalState, initGlobalState } from './reducer';
 
-export const GlobalStateContext = createContext(initGlobalState)
-export const GlobalDispatchContext = createContext
+export const GlobalStateContext = createContext<GlobalState>(initGlobalState);
+export const GlobalDispatchContext = createContext<GlobalDIspatch | undefined>(undefined);
 
 export function useGlobalStateContext(): GlobalState {
-  return useContext(GlobalStateContext)
+  return useContext(GlobalStateContext);
 }
 
-export function useGlobalDispatchContext(): GlobalDispatchType {
-  const dispatch = useContext(GlobalDispatchContext)
-  if (!dispatch) {
-    throw new Error('에러 수정 필요')
-  }
-
-  return dispatch
+export function useGlobalDispatch(): GlobalDIspatch {
+  const dispatch = useContext(GlobalDispatchContext);
 }
+
+// export function useGlobalStateContext(): G

@@ -1,5 +1,6 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import '../src/index.css';
+
 // Square components
 type Square = {
   value: string;
@@ -29,8 +30,6 @@ function Squares({ value, onClick }: Square) {
  * 프로퍼티는 위 객체 타입 Square 적용
  * 내용 추가 예정 -> value와 onclick에 앞에 선언한 props. 삭제
  */
-
-// Board Components
 
 type Board = {
   state: string[];
@@ -106,18 +105,12 @@ function calc(squares: string[]) {
  *  if문을 활용 squares[a] && squares[a] 과 squares[b] && squares[a] 과 squares[c] 같으면 squares[a]리턴
  */
 
-//Game components
-
 function Game() {
   const [state, setState] = useState({
     history: [{ squares: Array(9).fill(null) }],
     xIsNext: true,
     stepNumber: 0,
   });
-
-  /**
-   * game class component -> function으로 변경
-   */
 
   const current = state.history[state.stepNumber];
   const winner = calc(current.squares);
@@ -160,6 +153,10 @@ function Game() {
     status = 'Winner: ' + winner;
   } else {
     status = 'Next Player: ' + (state.xIsNext ? 'x' : 'o');
+  } else if (state.stepNumber !== current.squares.length) {
+    status = `Next Play: ${state.xIsNext ? 'x': 'o'}`
+  } else {
+    status = " 무승부 "
   }
   return (
     <div className="game">
