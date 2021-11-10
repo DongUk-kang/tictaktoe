@@ -1,5 +1,11 @@
 import React, { Dispatch, MouseEvent } from 'react';
 
+interface History {
+  state: [];
+  squares: string;
+  current: string;
+}
+
 export interface GlobalState {
   value: string | null;
   state: string[];
@@ -7,10 +13,7 @@ export interface GlobalState {
   winner: null;
   stepNumber: number;
   xIsNext: boolean;
-}
-
-interface history {
-  
+  history: History[];
 }
 
 export const initGlobalState: GlobalState = {
@@ -20,6 +23,7 @@ export const initGlobalState: GlobalState = {
   winner: null,
   stepNumber: 0,
   xIsNext: true,
+  history: [],
 };
 
 export type GlobalAction =
@@ -29,6 +33,10 @@ export type GlobalAction =
     }
   | {
       type: 'JUMP_TO_HISTORY';
+      onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+    }
+  | {
+      type: 'BACK_TO_HISTORY';
       onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
     };
 // CLICK_BOADR 플레이어가 수를 둘때
@@ -45,6 +53,11 @@ export function globalReducer(
         ...state,
       };
     case 'JUMP_TO_HISTORY':
+      return {
+        ...state,
+      };
+
+    case 'BACK_TO_HISTORY':
       return {
         ...state,
       };
