@@ -43,6 +43,7 @@ function Game() {
   /**
    * 게임 펑션 컴포넌트
    * 상태값을 상수화 하여 useState에 데이터를 저장
+   * xIsNext, stepNumber 지정
    */
 
   const current = state.history[state.stepNumber];
@@ -72,6 +73,8 @@ function Game() {
       xIsNext: step % 2 === 0,
     });
   };
+
+  // square 클릭시 o,x 발생
 
   const moves = state.history.map((step: object, move: number) => {
     const desc = move ? 'Go to move #' + move : 'Go to game start';
