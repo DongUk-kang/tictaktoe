@@ -1,17 +1,52 @@
-import { createContext, useContext } from 'react';
-import {
-  GlobalState,
-  initGlobalState,
-  GlobalDispatch,
-} from '../reducer/reducer';
+import React, { createContext, useContext } from 'react';
 
-export const GlobalStateContext = createContext<GlobalState>(initGlobalState);
-export const GlobalDispatchContext = createContext<GlobalDispatch | undefined>(
-  undefined
-);
+export type State = {
+  value: [];
+  state: string;
+  move: number;
+  winner?: boolean;
+  setNumber: number;
+  xIsNext: boolean;
+};
+export default State;
 
-export function useGlobalStateContext(): GlobalState {
-  return useContext(GlobalStateContext);
+function onClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
+  dispatch({ type: 'CLICK_BOADR', data: {} });
 }
 
-export function useGlobalDispatch() {}
+export type Action =
+  | { type: 'CLICK_BOADR' }
+  | { type: 'JUMP_TO_HISTROY' }
+  | { type: 'BACK_TO_HISTORY' };
+
+export const StateContext = createContext;
+export const DispatchContext = createContext<Dispatch | undefined>(undefined);
+
+function useGlobalStateContext(): State {
+  return useContext(StateContext);
+}
+
+export function globalReducer(state: State, action: Action): State {
+  switch (action.type) {
+    case 'CLICK_BOADR':
+      return {
+        ...state,
+        data: {},
+      };
+
+    case 'JUMP_TO_HISTORY':
+      return {
+        ...state,
+        data: {},
+      };
+
+    case 'BACK_TO_HISTORY':
+      return {
+        ...state,
+        data: {},
+      };
+
+    default:
+      return state;
+  }
+}
