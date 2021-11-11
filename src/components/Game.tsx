@@ -90,7 +90,7 @@ function Game() {
   } else {
     status = 'Next Player: ' + (state.xIsNext ? 'x' : 'o');
   }
-  if (state.stepNumber !== current.squares.length) {
+  if (state.stepNumber !== current.squares.length ? 'font-wegint-bold' : '') {
     status = `Next Play: ${state.xIsNext ? 'x' : 'o'}`;
   }
 

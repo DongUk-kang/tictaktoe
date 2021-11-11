@@ -11,7 +11,9 @@ export type State = {
 export default State;
 
 function onClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
-  dispatch({ type: 'CLICK_BOADR', data: {} });
+  dispatch({
+    type: 'CLICK_BOADR'.asdas,
+  });
 }
 
 export type Action =
@@ -49,4 +51,7 @@ export function globalReducer(state: State, action: Action): State {
     default:
       return state;
   }
+}
+function dispatch(arg0: { type: string; data: {} }) {
+  throw new Error('Function not implemented.');
 }
