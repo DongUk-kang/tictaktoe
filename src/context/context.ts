@@ -1,57 +1,23 @@
-import React, { createContext, useContext, Dispatch } from 'react';
+import { createContext, useContext } from 'react';
+import {
+  globalDistpatch,
+  GlobalState,
+  initGlobalState,
+} from '../context/reducer';
 
-type State = {
-  value: [];
-  state: string;
-  move: number;
-  winner?: boolean;
-  setNumber: number;
-  xIsNext: boolean;
-};
-export default State;
+export const GlobalStateContext = createContext<GlobalState>(initGlobalState);
+export const globalDistpatchContext = createContext<
+  globalDistpatch | undefined
+>(undefined);
 
-// function onClick(
-//   event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-// ): void {}
-
-export type Action =
-  | { type: 'CLICK_BOADR'; state: string }
-  | { type: 'JUMP_TO_HISTROY'; move: number }
-  | { type: 'BACK_TO_HISTORY'; move: number };
-
-export const StateContext = createContext;
-export const DispatchContext = createContext<State | null>(null);
-
-type globalDistpatch = Dispatch<Action>;
-
-// function useGlobalStateContext(): State {
-//   return useContext(StateContext);
-// }
-
-export function globalReducer(state: State, action: Action): State {
-  switch (action.type) {
-    case 'CLICK_BOADR':
-      return {
-        ...state,
-        state: action.state,
-      };
-
-    case 'JUMP_TO_HISTROY':
-      return {
-        ...state,
-        move: action.move,
-      };
-
-    case 'BACK_TO_HISTORY':
-      return {
-        ...state,
-        move: action.move,
-      };
-
-    default:
-      return state;
-  }
+export function useGlobalStateContext(): GlobalState {
+  return useContext(GlobalStateContext);
 }
-function dispatch(arg0: { type: string; data: {} }) {
-  throw new Error('Function not implemented.');
+
+export function useGlobalDispatchContext(): globalDistpatch {
+  const dispatch = useContext(globalDistpatchContext)
+  if (!dispatch) {
+    throw new Error('에러 발생')
+  }
+  return dispatch;
 }
