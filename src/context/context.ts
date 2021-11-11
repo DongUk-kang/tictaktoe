@@ -1,6 +1,6 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, Dispatch } from 'react';
 
-export type State = {
+type State = {
   value: [];
   state: string;
   move: number;
@@ -10,42 +10,42 @@ export type State = {
 };
 export default State;
 
-function onClick(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {
-  dispatch({
-    type: 'CLICK_BOADR'.asdas,
-  });
-}
+// function onClick(
+//   event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+// ): void {}
 
 export type Action =
-  | { type: 'CLICK_BOADR' }
-  | { type: 'JUMP_TO_HISTROY' }
-  | { type: 'BACK_TO_HISTORY' };
+  | { type: 'CLICK_BOADR'; state: string }
+  | { type: 'JUMP_TO_HISTROY'; move: number }
+  | { type: 'BACK_TO_HISTORY'; move: number };
 
 export const StateContext = createContext;
-export const DispatchContext = createContext<Dispatch | undefined>(undefined);
+export const DispatchContext = createContext<State | null>(null);
 
-function useGlobalStateContext(): State {
-  return useContext(StateContext);
-}
+type globalDistpatch = Dispatch<Action>;
+
+// function useGlobalStateContext(): State {
+//   return useContext(StateContext);
+// }
 
 export function globalReducer(state: State, action: Action): State {
   switch (action.type) {
     case 'CLICK_BOADR':
       return {
         ...state,
-        data: {},
+        state: action.state,
       };
 
-    case 'JUMP_TO_HISTORY':
+    case 'JUMP_TO_HISTROY':
       return {
         ...state,
-        data: {},
+        move: action.move,
       };
 
     case 'BACK_TO_HISTORY':
       return {
         ...state,
-        data: {},
+        move: action.move,
       };
 
     default:

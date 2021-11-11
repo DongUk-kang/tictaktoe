@@ -42,7 +42,6 @@ function Game() {
 
   /**
    * 게임 펑션 컴포넌트
-   * 상태값을 상수화 하여 useState에 데이터를 저장
    */
 
   const current = state.history[state.stepNumber];
@@ -92,6 +91,13 @@ function Game() {
   }
   if (state.stepNumber !== current.squares.length ? 'font-wegint-bold' : '') {
     status = `Next Play: ${state.xIsNext ? 'x' : 'o'}`;
+    if (state.stepNumber === 9) {
+      status = 'Draw Game';
+    } else {
+      if (state.stepNumber !== current.squares.length) {
+        status = `Next Play: ${state.xIsNext ? 'x' : 'o'}`;
+      }
+    }
   }
 
   return (
