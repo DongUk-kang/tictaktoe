@@ -1,7 +1,6 @@
-import { createContext, useContext, Dispatch } from 'react';
+import { Dispatch } from 'react';
 
 export interface GlobalState {
-  value: [];
   state: string;
   move: number;
   winner?: boolean;
@@ -10,7 +9,6 @@ export interface GlobalState {
 }
 
 export const initGlobalState: GlobalState = {
-  value: [],
   state: 'string',
   move: 0,
   winner: true,
@@ -22,18 +20,21 @@ export const initGlobalState: GlobalState = {
 //   event: React.MouseEvent<HTMLButtonElement, MouseEvent>
 // ): void {}
 
-export type Action =
+export type GlobalAction =
   | { type: 'CLICK_BOADR'; state: string }
   | { type: 'JUMP_TO_HISTROY'; move: number }
   | { type: 'BACK_TO_HISTORY'; move: number };
 
-export type globalDistpatch = Dispatch<Action>;
+export type globalDistpatch = Dispatch<GlobalAction>;
 
 // function useGlobalStateContext(): State {
 //   return useContext(StateContext);
 // }
 
-export function globalReducer(state: GlobalState, action: Action): GlobalState {
+export function globalReducer(
+  state: GlobalState,
+  action: GlobalAction
+): GlobalState {
   switch (action.type) {
     case 'CLICK_BOADR':
       return {

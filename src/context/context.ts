@@ -15,9 +15,9 @@ export function useGlobalStateContext(): GlobalState {
 }
 
 export function useGlobalDispatchContext(): globalDistpatch {
-  const dispatch = useContext(globalDistpatchContext)
+  const dispatch = useContext(globalDistpatchContext);
   if (!dispatch) {
-    throw new Error('에러 발생')
+    throw new Error('에러 발생');
   }
   return dispatch;
 }
