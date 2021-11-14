@@ -16,19 +16,35 @@ export const initGlobalState: GlobalState = {
   xIsNext: true,
 };
 
-// function onClick(
-//   event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-// ): void {}
+// const [state, setState] = useState({
+//   history: [{ squares: Array(9).fill(null) }],
+//   xIsNext: true,
+//   stepNumber: 0,
+// });
+
+// function game(state: string, move: number, winner?: boolean, xIsNext: number): <GlobalState> (
+//   const onClick = useCallback(
+//     (i) => {
+//       const history = state.history.slice(0, state.stepNumber + 1);
+//       const square = current.squares.slice();
+//       if (calc(square) || square[i]) {
+//         return null
+//       }
+//       square[i] = state.xIsNext ''
+//     }
+//   )
+// )
 
 export type GlobalAction =
   | { type: 'CLICK_BOADR'; state: string }
-  | { type: 'JUMP_TO_HISTROY'; move: number }
-  | { type: 'BACK_TO_HISTORY'; move: number };
+  | { type: 'JUMP_TO_HISTROY'; move: number; ocClick: () => void }
+  | { type: 'BACK_TO_HISTORY'; move: number; ocClick: () => void };
 
 export type globalDistpatch = Dispatch<GlobalAction>;
 
-// function useGlobalStateContext(): State {
-//   return useContext(StateContext);
+// function clickhistory() {
+//   onclick(ev, MouseEvent);
+//   any;
 // }
 
 export function globalReducer(
