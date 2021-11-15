@@ -30,7 +30,10 @@ ol, ul {
   padding: 0;
   text-align: center;
   width: 34px;
-  /* background-color: red; */
+}
+
+.font-weight-bold{
+  font-weight: bold;
 }
 
 .square:focus {

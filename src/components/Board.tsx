@@ -15,6 +15,26 @@ function Boards({ state, onClick }: Board) {
     return <Squares value={state[i]} onClick={() => onClick(i)} />;
   };
 
+  // render();
+  // {
+  //   const boraderRow = [];
+  //   let k = 0;
+  //   for (let i = 0; i < 3; i++) {
+  //     const squares = [];
+  //     for (let j = 0; j < 3; j++) {
+  //       squares.push(renderSquare(3 * i + j));
+  //       k++;
+  //     }
+  //     boraderRow.push(
+  //       <div key={k} className="board-row">
+  //         {squares}
+  //       </div>
+  //     );
+  //   }
+
+  //   return <div>{boraderRow}</div>;
+  // }
+
   return (
     <div>
       <div className="board-row">
