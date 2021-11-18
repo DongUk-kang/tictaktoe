@@ -2,8 +2,9 @@ import React from 'react';
 import Squares from '../components/Square';
 
 type Board = {
-  state: string[];
+  state: any;
   onClick: (i: number) => void;
+  props: any;
 };
 
 // Board 타입 "state: string[]"< 으로 정의 "onClick: () => void"로 정의 진행

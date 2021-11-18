@@ -1,21 +1,12 @@
-import React, { useReducer } from 'react';
+import React from 'react';
 import '../src/index.css';
-import { Game } from '../src/components/index';
-import { globalReducer, initGlobalState } from '../src/context/reducer';
-import {
-  GlobalStateContext,
-  globalDistpatchContext,
-} from '../src/context/context';
+import { GameProvider } from '../src/context/context';
+import Game from './components/Game';
 
-function App(): React.ReactElement {
-  const [state, dispatch] = useReducer(globalReducer, initGlobalState);
-  return (
-    <GlobalStateContext.Provider value={state}>
-      <globalDistpatchContext.Provider value={dispatch}>
-        <Game />
-      </globalDistpatchContext.Provider>
-    </GlobalStateContext.Provider>
-  );
-}
+const App: React.FC = () => (
+  <GameProvider>
+    <Game />
+  </GameProvider>
+);
 
 export default App;
