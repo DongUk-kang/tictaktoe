@@ -1,39 +1,34 @@
 import React, { useReducer, useContext, createContext, Dispatch } from 'react';
 
-type State = {
-  winner: boolean;
-  move: boolean;
-  history: object;
-};
+interface State {
+  history: { squares: string[] }[];
+  winner: string | any;
+  stepNumber: number;
+  xIsNext: boolean;
+  index: number | any;
+}
 
 type Action =
-  | { type: 'START_GAME'; move: boolean }
-  | { type: 'CLICK_BOARD'; move: boolean }
-  | { type: 'CLICK_HISTORY'; history: object };
+  | { type: 'GAME_START'; index: number }
+  | { type: 'CLICK_HISTORY'; index: number };
 type GameDispatch = Dispatch<Action>;
 // 액션의 타입을 Dispatch의 제네릭으로 지정해줌
 
 const GlobalStateContext = createContext<State | null>(null);
 const GlobalDispatchContext = createContext<GameDispatch | null>(null);
 
-function reducer(state: State, action: Action): State {
+function reducer(state: State, action: any): State {
   switch (action.type) {
-    case 'START_GAME':
+    case 'GAME_START':
       return {
         ...state,
-        move: action.move,
-      };
-
-    case 'CLICK_BOARD':
-      return {
-        ...state,
-        move: action.move,
+        index: action.index,
       };
 
     case 'CLICK_HISTORY':
       return {
         ...state,
-        history: action.history,
+        index: action.index,
       };
 
     default:
@@ -43,12 +38,13 @@ function reducer(state: State, action: Action): State {
 
 export function GameProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(reducer, {
-    winner: 'winner',
-    move: 0,
-    history: {
-      squares: Array(9).fill(null),
-    },
+    history: [],
+    winner: null,
+    stepNumber: 0,
+    xIsNext: true,
+    index: 0,
   });
+
   return (
     <GlobalStateContext.Provider value={state}>
       <GlobalDispatchContext.Provider value={dispatch}>
