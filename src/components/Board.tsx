@@ -1,41 +1,18 @@
-import React from 'react';
 import Squares from '../components/Square';
 
 type Board = {
-  state: any;
+  squares: string[];
   onClick: (i: number) => void;
-  props: any;
 };
 
 // Board 타입 "state: string[]"< 으로 정의 "onClick: () => void"로 정의 진행
 // state, onClick 타입 재지정 예정
 // index를 number 타입으로 지정함
 
-function Boards({ state, onClick }: Board) {
+function Boards({ squares, onClick }: Board) {
   const renderSquare = (i: number) => {
-    return <Squares value={state[i]} onClick={() => onClick(i)} />;
+    return <Squares value={squares[i]} onClick={() => onClick(i)} />;
   };
-
-  // render();
-  // {
-  //   const boraderRow = [];
-  //   let k = 0;
-  //   for (let i = 0; i < 3; i++) {
-  //     const squares = [];
-  //     for (let j = 0; j < 3; j++) {
-  //       squares.push(renderSquare(3 * i + j));
-  //       k++;
-  //     }
-  //     boraderRow.push(
-  //       <div key={k} className="board-row">
-  //         {squares}
-  //       </div>
-  //     );
-  //   }
-
-  //   return <div>{boraderRow}</div>;
-  // }
-
   return (
     <div>
       <div className="board-row">

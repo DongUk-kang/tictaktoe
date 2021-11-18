@@ -3,7 +3,7 @@ import React from 'react';
 // Square components
 type Square = {
   value: string;
-  onClick: () => void;
+  onClick(): void;
 };
 // /**
 //  * SquareProp 라는 객체 타입을 지정 -> 타입명 Square로 수정
@@ -17,10 +17,10 @@ type Square = {
 //  */
 // const SquareContext = React.createContext(defaultValue);
 
-function Squares({ value, onClick }: Square) {
+function Squares(props: Square) {
   return (
-    <button className="square" onClick={onClick}>
-      {value}
+    <button className="square" onClick={props.onClick}>
+      {props.value}
     </button>
   );
 }
