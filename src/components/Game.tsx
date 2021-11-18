@@ -1,7 +1,7 @@
 import Boards from './Board';
 import React from 'react';
 
-interface Game {
+interface GameProps {
   history: { squares: string[] }[];
   stepNumber: number;
   winner: string;
@@ -10,7 +10,7 @@ interface Game {
   gamestart: () => void;
 }
 
-class Games extends React.Component<Game, undefined> {
+class Game extends React.Component<GameProps, undefined> {
   render() {
     const history = this.props.history;
     const current = history[this.props.stepNumber];
@@ -49,4 +49,4 @@ class Games extends React.Component<Game, undefined> {
   }
 }
 
-export default Games;
+export default Game;
