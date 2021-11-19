@@ -57,7 +57,7 @@ export function reducer(state = initialState, action: any): State {
         xIsNext: !state.xIsNext,
         winner: calcWinner(squares),
         index: 0,
-        winningIndex: ''
+        winningIndex: '',
       };
     }
 
@@ -71,7 +71,7 @@ export function reducer(state = initialState, action: any): State {
         xIsNext: xIsNext,
         winner: winner,
         index: state.index,
-        winningIndex: ''
+        winningIndex: '',
       };
     }
 
@@ -95,9 +95,9 @@ function calcWinner(squares: string[]) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       return {
-        player: squares[a];
-        winningIndex: [a, b, c]
-      }
+        player: squares[a],
+        winningIndex: [a, b, c],
+      };
     }
   }
 }

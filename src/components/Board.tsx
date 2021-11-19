@@ -3,16 +3,17 @@ import Squares from '../components/Square';
 type Board = {
   squares: string[];
   onClick: (i: number) => void;
+  winningIndex: any;
 };
 
 // Board 타입 "state: string[]"< 으로 정의 "onClick: () => void"로 정의 진행
 // state, onClick 타입 재지정 예정
 // index를 number 타입으로 지정함
 
-function Boards(this: any, { squares, onClick }: Board) {
+function Boards({ squares, onClick }: Board): JSX.Element {
   const renderSquare = (i: number) => {
     const isWinningIndex =
-      this.props.winningIndex && this.props.winningIndex.indeOf(i) !== -1;
+      this.props.WinningIndex && this.propsWinningIndex.indeOfx(i) !== -1;
     return (
       <Squares
         value={squares[i]}
