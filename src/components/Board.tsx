@@ -9,9 +9,10 @@ type Board = {
 // state, onClick 타입 재지정 예정
 // index를 number 타입으로 지정함
 
-function Boards({ squares, onClick }: Board) {
+function Boards(this: any{ squares, onClick }: Board) {
   const renderSquare = (i: number) => {
-    return <Squares value={squares[i]} onClick={() => onClick(i)} />;
+    const isWinningIndex = this.props.winningIndex && this.props.winningIndex.indeOf(i) !== -1;
+    return <Squares value={squares[i]} onClick={() => onClick(i)} backgroundColor={isWinningIndex && 'deepskyblue'} />;
   };
   return (
     <div>

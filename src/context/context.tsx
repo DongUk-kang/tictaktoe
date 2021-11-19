@@ -1,13 +1,15 @@
 import React, { useReducer, useContext, createContext, Dispatch } from 'react';
 
 interface State {
+  index: number;
   history: { squares: string[] }[];
   winner: string | any;
   stepNumber: number;
   xIsNext: boolean;
+  winningIndex: any;
 }
 
-const initialState: State = {
+export const initialState: State = {
   history: [
     {
       squares: Array(9).fill(null),
@@ -16,21 +18,23 @@ const initialState: State = {
   stepNumber: 0,
   xIsNext: true,
   winner: null,
+  index: 0,
+  winningIndex: '',
 };
 
-const GAME_START: string = 'GAME_START';
-const CLICK_HISTORY: string = 'CLICK_HISTORY';
-
-type Action = { type: 'GAME_START' } | { type: 'CLICK_HISTORY' };
+type Action =
+  | { type: 'GAME_START'; index: number }
+  | { type: 'CLICK_HISTORY'; index: number };
 type GameDispatch = Dispatch<Action>;
 // 액션의 타입을 Dispatch의 제네릭으로 지정해줌
+export const GlobalStateContext = createContext<State>(initialState);
+export const GlobalDispatchContext = createContext<GameDispatch | undefined>(
+  undefined
+);
 
-const GlobalStateContext = createContext<State | null>(null);
-const GlobalDispatchContext = createContext<GameDispatch | null>(null);
-
-function reducer(state: State = initialState, action: any): State {
+export function reducer(state = initialState, action: any): State {
   switch (action.type) {
-    case GAME_START: {
+    case 'GAME_START': {
       const history = state.history.slice(0, state.stepNumber + 1);
       const current = history[history.length - 1];
       const squares = current.squares.slice();
@@ -49,12 +53,15 @@ function reducer(state: State = initialState, action: any): State {
           },
         ]),
         stepNumber: history.length,
+
         xIsNext: !state.xIsNext,
         winner: calcWinner(squares),
+        index: 0,
+        winningIndex: ''
       };
     }
 
-    case CLICK_HISTORY: {
+    case 'CLICK_HISTORY': {
       const stepNumber = action.index;
       const xIsNext = stepNumber % 2 === 0 ? true : false;
       const winner = calcWinner(state.history[stepNumber].squares);
@@ -63,6 +70,8 @@ function reducer(state: State = initialState, action: any): State {
         stepNumber: stepNumber,
         xIsNext: xIsNext,
         winner: winner,
+        index: state.index,
+        winningIndex: ''
       };
     }
 
@@ -85,7 +94,10 @@ function calcWinner(squares: string[]) {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      return {
+        player: squares[a];
+        winningIndex: [a, b, c]
+      }
     }
   }
 }

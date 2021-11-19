@@ -4,6 +4,7 @@ import React from 'react';
 type Square = {
   value: string;
   onClick(): void;
+  backgroundColor: any;
 };
 // /**
 //  * SquareProp 라는 객체 타입을 지정 -> 타입명 Square로 수정
@@ -19,7 +20,7 @@ type Square = {
 
 function Squares(props: Square) {
   return (
-    <button className="square" onClick={props.onClick}>
+    <button className="square" onClick={props.onClick style={{ backgroundColor }}>
       {props.value}
     </button>
   );
