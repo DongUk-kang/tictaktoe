@@ -3,6 +3,7 @@ import Squares from '../components/Square';
 type Board = {
   squares: string[];
   onClick: (index: number) => void;
+  boardRows: any;
   // winningIndex: any;
 };
 
