@@ -12,10 +12,23 @@ type Board = {
 
 function Boards(this: any, { squares, onClick }: Board): JSX.Element {
   const renderSquare = (i: number) => {
+    const boardRow = [];
+    for (let i = 0, len = Math.sqrt(this.props.square.length); i < len; i++) {
+      const innerCols = [];
+      for (let j = 0; j < len; j++) {
+        innerCols.push(this.renderSquare(i * len + j));
+      }
+      boardRow.push(
+        <div className="board-row" key={`row-${i}`}>
+          {innerCols}
+        </div>
+      );
+    }
     // const isWinningIndex =
     //   this.props.WinningIndex && this.propsWinningIndex.indexOf(i) !== -1;
     return (
       <Squares
+        key={`button-${i}`}
         value={squares[i]}
         onClick={() => onClick(i)}
         // backgroundColor={isWinningIndex && 'deepskyblue'}
@@ -24,7 +37,8 @@ function Boards(this: any, { squares, onClick }: Board): JSX.Element {
   };
   return (
     <div>
-      <div className="board-row">
+      {boardRows}
+      {/* <div className="board-row">
         {renderSquare(0)}
         {renderSquare(1)}
         {renderSquare(2)}
@@ -38,7 +52,7 @@ function Boards(this: any, { squares, onClick }: Board): JSX.Element {
         {renderSquare(6)}
         {renderSquare(7)}
         {renderSquare(8)}
-      </div>
+      </div> */}
     </div>
   );
 }

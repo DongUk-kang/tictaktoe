@@ -55,7 +55,7 @@ export function reducer(state = initialState, action: any): State {
         stepNumber: history.length,
         xIsNext: !state.xIsNext,
         winner: calcWinner(squares),
-        index: 1,
+        index: 0,
         winningIndex: '',
       };
     }

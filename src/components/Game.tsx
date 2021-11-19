@@ -39,7 +39,11 @@ function Game() {
   if (winner) {
     status = 'Winner: ' + winner;
   } else {
-    status = 'Next Play: ' + (state.xIsNext ? 'x' : 'o');
+    if (state.stepNumber >= 9) {
+      status = 'Draw Game';
+    } else {
+      status = 'Next Play: ' + (state.xIsNext ? 'x' : 'o');
+    }
   }
   return (
     <div className="game">
