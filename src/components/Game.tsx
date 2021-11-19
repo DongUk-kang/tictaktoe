@@ -37,9 +37,7 @@ class Game extends React.Component {
     });
 
     let status;
-    let winningIndex;
     if (winner) {
-      winningIndex = winner.winningIndex;
       status = 'Winner: ' + winner;
     } else {
       status = 'Next Play: ' + (state.xIsNext ? 'x' : 'o');
@@ -48,11 +46,7 @@ class Game extends React.Component {
     return (
       <div className="game">
         <div className="game-board">
-          <Boards
-            squares={current.squares}
-            onClick={gameStart}
-            winningIndex={winningIndex}
-          />
+          <Boards squares={current.squares} onClick={gameStart} />
         </div>
         <div className="game-info">
           <div>{status}</div>
