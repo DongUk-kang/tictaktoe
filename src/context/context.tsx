@@ -6,10 +6,6 @@ interface State {
   winner: string | any;
   stepNumber: number;
   xIsNext: boolean;
-<<<<<<< HEAD
-=======
-  isDisplayOrderByAsc: boolean;
->>>>>>> master
   winningIndex: any;
 }
 
@@ -22,13 +18,8 @@ export const initialState: State = {
   stepNumber: 0,
   xIsNext: true,
   winner: null,
-<<<<<<< HEAD
   index: 0,
   winningIndex: '',
-=======
-  isDisplayOrderByAsc: true,
-  winningIndex: true,
->>>>>>> master
 };
 
 type Action =
@@ -65,13 +56,8 @@ export function reducer(state = initialState, action: any): State {
 
         xIsNext: !state.xIsNext,
         winner: calcWinner(squares),
-<<<<<<< HEAD
         index: 0,
         winningIndex: '',
-=======
-        isDisplayOrderByAsc: true,
-        winningIndex: {},
->>>>>>> master
       };
     }
 
@@ -84,13 +70,8 @@ export function reducer(state = initialState, action: any): State {
         stepNumber: stepNumber,
         xIsNext: xIsNext,
         winner: winner,
-<<<<<<< HEAD
         index: state.index,
         winningIndex: '',
-=======
-        isDisplayOrderByAsc: true,
-        winningIndex: true,
->>>>>>> master
       };
     }
 
