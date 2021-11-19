@@ -6,11 +6,11 @@ import { clickhiHstory, gameStart } from '../context/GAME_START';
 // interface GameProps {
 //   history: { squares: string[] }[];
 //   stepNumber: number;
-//   winner: string; | any;
+//   winner: string;
 //   xIsNext: boolean;
 //   clickhistory: (move: number) => void;
 //   gamestart: () => void;
-//  winningIndex: any;
+//   winningIndex: any;
 // }
 
 function Game() {
@@ -20,14 +20,14 @@ function Game() {
   const winner = state.winner;
 
   const moves = history.map((step, move) => {
-    const desc = move ? 'Move' + move : 'Game Start';
+    const desc = move ? 'Move #' + move : 'Game Start';
     return (
       <li className={state.stepNumber === move ? 'highlight' : ''} key={move}>
         <button
           onClick={() => clickhiHstory(move)}
-          style={{
-            fontWeight: state.stepNumber === move ? 'bold' : 'normal',
-          }}
+          // style={{
+          //   fontWeight: state.stepNumber === move ? 'bold' : 'normal',
+          // }}
         >
           {desc}
         </button>

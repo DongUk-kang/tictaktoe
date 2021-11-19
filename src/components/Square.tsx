@@ -1,11 +1,9 @@
-import React from 'react';
-
 // Square components
-type Square = {
+interface Square {
   value: string;
   onClick(): void;
   // backgroundColor: string;
-};
+}
 // /**
 //  * SquareProp 라는 객체 타입을 지정 -> 타입명 Square로 수정
 //  * onClick이벤트는 초기 타입선언시 이벤트리스너 타입으로 지정하였으나
