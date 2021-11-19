@@ -9,10 +9,32 @@ type Board = {
 // state, onClick 타입 재지정 예정
 // index를 number 타입으로 지정함
 
-function Boards({ squares, onClick }: Board) {
+function Boards(this: any, { squares, onClick }: Board) {
   const renderSquare = (i: number) => {
-    return <Squares value={squares[i]} onClick={() => onClick(i)} />;
+    const isWinningIndex =
+      this.props.winningIndex && this.props.winningIndex.indexOf(i) !== -1;
+    return (
+      <Squares
+        value={squares[i]}
+        onClick={() => onClick(i)}
+        backgroundColor={isWinningIndex && 'deepskyblue'}
+      />
+    );
   };
+
+  // render() {
+  //   let board = [];
+  //   for (let i = 0; i < 3; i++) {
+  //     let row = [];
+  //     for (let j = 0; j < 3; j++) {
+  //       row.push(this.renderSquare(i * 3 + j));
+  //     }
+  //     board.push(<div key={'bid' + idText} className="board-row}>{row}</div>);
+  //   }
+  //   return (
+  //     <div>{board}</div>
+  //   )
+  // }
   return (
     <div>
       <div className="board-row">

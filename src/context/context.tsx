@@ -5,6 +5,8 @@ interface State {
   winner: string | any;
   stepNumber: number;
   xIsNext: boolean;
+  isDisplayOrderByAsc: boolean;
+  winningIndex: any;
 }
 
 const initialState: State = {
@@ -16,6 +18,8 @@ const initialState: State = {
   stepNumber: 0,
   xIsNext: true,
   winner: null,
+  isDisplayOrderByAsc: true,
+  winningIndex: true,
 };
 
 const GAME_START: string = 'GAME_START';
@@ -51,6 +55,8 @@ function reducer(state: State = initialState, action: any): State {
         stepNumber: history.length,
         xIsNext: !state.xIsNext,
         winner: calcWinner(squares),
+        isDisplayOrderByAsc: true,
+        winningIndex: {},
       };
     }
 
@@ -63,6 +69,8 @@ function reducer(state: State = initialState, action: any): State {
         stepNumber: stepNumber,
         xIsNext: xIsNext,
         winner: winner,
+        isDisplayOrderByAsc: true,
+        winningIndex: true,
       };
     }
 
@@ -85,7 +93,10 @@ function calcWinner(squares: string[]) {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      return {
+        player: squares[a],
+        winningIndex: [a, b, c],
+      };
     }
   }
 }

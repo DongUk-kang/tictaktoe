@@ -4,10 +4,12 @@ import React from 'react';
 interface GameProps {
   history: { squares: string[] }[];
   stepNumber: number;
-  winner: string;
+  winner: string | any;
   xIsNext: boolean;
   clickhistory: (move: number) => void;
   gamestart: () => void;
+  isDisplayOrderByAsc: boolean;
+  winningIndex: any;
 }
 
 class Game extends React.Component<GameProps, undefined> {
@@ -23,14 +25,23 @@ class Game extends React.Component<GameProps, undefined> {
           className={this.props.stepNumber === move ? 'highlight' : ''}
           key={move}
         >
-          <button onClick={() => this.props.clickhistory(move)}>{desc}</button>
+          <button
+            onClick={() => this.props.clickhistory(move)}
+            style={{
+              fontWeight: this.state.stepNumber === move ? 'bold' : 'normal',
+            }}
+          >
+            {desc}
+          </button>
         </li>
       );
     });
 
     let status;
+    let winningIndex;
     if (winner) {
       status = 'Winner: ' + winner;
+      winningIndex = winner.winningIndex;
     } else {
       status = 'Next Play: ' + (this.props.xIsNext ? 'x' : 'o');
     }
@@ -38,7 +49,11 @@ class Game extends React.Component<GameProps, undefined> {
     return (
       <div className="game">
         <div className="game-board">
-          <Boards squares={current.squares} onClick={this.props.gamestart} />
+          <Boards
+            squares={current.squares}
+            onClick={this.props.gamestart}
+            winningIndex={winningIndex}
+          />
         </div>
         <div className="game-info">
           <div>{status}</div>
